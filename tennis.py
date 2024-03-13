@@ -1,11 +1,13 @@
 import time
 from pettingzoo.atari import tennis_v3
 import supersuit as ss
-from manual_policy import ManualPolicy
 import numpy as np
 import torch
 import torch.nn as nn
 from torch.distributions.categorical import Categorical
+
+from manual_policy import ManualPolicy
+
 
 def layer_init(layer, std=np.sqrt(2), bias_const=0.0):
     torch.nn.init.orthogonal_(layer.weight, std)
@@ -81,4 +83,5 @@ for agent in env.agent_iter():
 
     if termination or truncation:
         env.reset()
+    
     time.sleep(1000/60/1000)
